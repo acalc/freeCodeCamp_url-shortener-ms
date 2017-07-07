@@ -1,0 +1,19 @@
+{
+  "name": "acalc-timestamp-ms",
+  "version": "1.0.0",
+  "description": "A freeCodeCamp backend project app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "acalc",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29"
+  },
+  "engines": {
+    "node": "7.7.1"
+  }
+}
