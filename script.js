@@ -69,16 +69,19 @@ exports.gotoUrl = function(key, res) {
 
 		var urls = db.collection("urls")
 		db.collection("urls").findOne({_id: key}, function(err, doc) {
-			var json
-			if (err) {
-				json = {error: "An unspecified error that may be unrelated to the validity of the key occurred", key: key}
-			} else if (doc) {
-				json = {key: key, url: doc.url}
+			if (doc && doc.url) {
+				console.log("doc url", doc.url)
+				var url = doc.url
+				if (url.match(/^https?:\/\//) === null) {
+					url = "http://"+url;
+				}
+				res.redirect(301, url)
+			} else if (err) {
+				res.json({error: "An unspecified error that may be unrelated to the validity of the key occurred", key: key})
 			} else {
-				json = {error: "No URL mapped to provided key", key: key}
+				res.json({error: "No URL mapped to provided key", key: key})
 			}
 			db.close()
-			res.json(json)
 		})
 	})
 }

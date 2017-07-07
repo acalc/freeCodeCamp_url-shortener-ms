@@ -14,7 +14,7 @@ app.get("/", function(req, res) {
 // NOTE: instead of naming a parameter the usual way by prepending a colon,
 // this is like a pure regexp way of getting params, but enclosing the
 // relevant portion within parens. it is captured & written to req.params
-app.get(/^\/shrink\/([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]{0,})?)/, function(req, res) {
+app.get(/^\/shrink\/([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,8}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]{0,})?)/, function(req, res) {
 	delete require.cache[require.resolve("./script.js")]
 	require("./script.js").shortenUrl(req.params[0], res)
 })
