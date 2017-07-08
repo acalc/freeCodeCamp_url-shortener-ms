@@ -68,7 +68,7 @@ exports.gotoUrl = function(key, res) {
 		}
 
 		var urls = db.collection("urls")
-		db.collection("urls").findOne({_id: key}, function(err, doc) {
+		urls.findOne({_id: key}, function(err, doc) {
 			if (doc && doc.url) {
 				console.log("doc url", doc.url)
 				var url = doc.url
