@@ -3,7 +3,8 @@ const CHAR_SET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 const KEY_LEN = 6
 const MAX_INSERTION_ATTEMPTS = 10
 
-const MongoDb = require("mongodb")
+var MongoDb = require("mongodb")
+var DbUri = require("./private.js").getDbUri()
 
 
 // NOTE: from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -23,10 +24,7 @@ function GenerateKey(charset, keylen) {
 }
 
 exports.shortenUrl = function(url, res) {
-	var credentials = require("./dbcredentials.js").getDbCredentials()
-	var uri = `mongodb://${credentials.username}:${credentials.password}@ds151062.mlab.com:51062/furl`
-
-	MongoDb.MongoClient.connect(uri, function(err, db) {
+	MongoDb.MongoClient.connect(DbUri, function(err, db) {
 		if (err) {
 			res.json({error: "error connecting to the database at this time"})
 			return
@@ -58,10 +56,7 @@ exports.shortenUrl = function(url, res) {
 }
 
 exports.gotoUrl = function(key, res) {
-	var credentials = require("./dbcredentials.js").getDbCredentials()
-	var uri = `mongodb://${credentials.username}:${credentials.password}@ds151062.mlab.com:51062/furl`
-
-	MongoDb.MongoClient.connect(uri, function(err, db) {
+	MongoDb.MongoClient.connect(DbUri, function(err, db) {
 		if (err) {
 			res.json({error: "error connecting to the database at this time"})
 			return

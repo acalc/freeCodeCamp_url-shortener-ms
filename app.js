@@ -11,7 +11,7 @@ app.get("/", function(req, res) {
 <!DOCTYPE html>
 <html>
  <head><title>furly</title></head>
- <body>
+ <body style="font-size: 1.25rem;">
   <p><b>Shorten URL:</b> <pre>${APP_URL}shorten/your-url-here</pre></p>
   <p><b>Goto URL:</b> <pre>${APP_URL}shortened-url-key</pre></p>
  </body>
